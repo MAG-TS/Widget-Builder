@@ -44,8 +44,9 @@ function App() {
               <Settings />
             </Route>
           </Switch>
-        </div>
+       
         </Container>      
+        </div>
       </div>
     </Router>
   );
