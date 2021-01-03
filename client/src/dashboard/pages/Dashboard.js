@@ -5,7 +5,7 @@ export default function Dashboard() {
         <div className="show-grid">
             <FlexboxGrid justify="space-between" align="top">
                 <FlexboxGrid.Item colspan={18}>
-                    <h2>My Dashboard</h2>
+                    <h3>My Dashboard</h3>
                 </FlexboxGrid.Item>
                 <FlexboxGrid.Item colspan={6} >
                     <FlexboxGrid justify="end">
