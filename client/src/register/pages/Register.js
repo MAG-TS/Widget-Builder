@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Departments() {
+export default function Register() {
     return (
         <div>
-            DEPARTMENTS PAGE
+            REGISTER PAGE
         </div>
     )
 }
