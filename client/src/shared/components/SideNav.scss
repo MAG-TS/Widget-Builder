@@ -1,0 +1,27 @@
+$primary-color: #37474F;
+$orange-color: #FF9800;
+$white-color: #fff;
+
+.sidenav-container {
+    height: 100vh;
+    color: $primary-color;
+    background: $white-color;
+    transition: 0.3s ease-in-out;
+    .rs-sidenav-body {
+        background: $white-color;
+    }
+    .rs-nav-item > .rs-nav-item-content {
+        color: $primary-color;
+    }
+    .rs-nav-item-active > .rs-nav-item-content, .rs-nav-item-active a i {
+        color: $orange-color;
+    }
+    .burger-icon {
+        margin: 12px;
+        text-align: right;
+        svg {
+            cursor: pointer;
+        }
+    }
+}
+
