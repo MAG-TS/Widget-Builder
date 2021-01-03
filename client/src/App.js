@@ -22,10 +22,10 @@ function App() {
               <Link to="/">Dashboard</Link>
             </li>
             <li>
-              <Link to="/widger-builder">Widget Builder</Link>
+              <Link to="/widget-builder">Widget Builder</Link>
             </li>
             <li>
-              <Link to="/users">Departments</Link>
+              <Link to="/departments">Departments</Link>
             </li>
             <li>
               <Link to="/co-workers">Co-Workers</Link>
@@ -36,10 +36,9 @@ function App() {
           </ul>
         </nav>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+
         <Switch>
-          <Route path="/dashboard">
+          <Route path="/" exact>
             <Dashboard />
           </Route>
           <Route path="/widget-builder">
