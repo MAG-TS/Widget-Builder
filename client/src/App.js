@@ -12,6 +12,9 @@ import WidgetBuilder from './widget-builder/pages/WidgetBuilder';
 import Departments from './departments/pages/Departments';
 import CoWorkers from './co-workers/pages/CoWorkers';
 import Settings from './settings/pages/Settings';
+import 'rsuite/dist/styles/rsuite-default.css';
+import './app.scss';
+import { Container } from 'rsuite';
 
 
 function App() {
@@ -23,6 +26,7 @@ function App() {
         <div className="main">
           <Header></Header>
 
+        <Container className="container">
           <Switch>
             <Route path="/" exact>
               <Dashboard />
@@ -41,6 +45,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        </Container>      
       </div>
     </Router>
   );
