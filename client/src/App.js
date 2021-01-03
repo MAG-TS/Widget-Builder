@@ -1,3 +1,5 @@
+import Header from "./shared/components/Header";
+
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -16,6 +18,7 @@ function App() {
   return (
     <Router>
       <div>
+        <Header></Header>
         <nav>
           <ul>
             <li>
