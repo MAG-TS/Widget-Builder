@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Table, FlexboxGrid, Progress, Tag, Input, InputGroup, Icon, Button, Avatar } from 'rsuite';
+import { Table, FlexboxGrid, Progress, Tag, Input, InputGroup, Icon, Button, Avatar, Container } from 'rsuite';
 
 
 const ProgressCell = ({ rowData, dataKey, ...props }) => (
@@ -62,7 +62,7 @@ export default function Departments() {
 
 
     return (
-       <div className="show-grid">
+       <Container className="container">
             <FlexboxGrid justify="space-between" align="middle">
                 <FlexboxGrid.Item colspan={18}>
                     <FlexboxGrid justify="start"  align="middle">
@@ -118,6 +118,6 @@ export default function Departments() {
                 <Button className="button-margin-top" color="orange">Add New Department</Button>
             </FlexboxGrid>
             
-        </div>
+        </Container>
     )
 }

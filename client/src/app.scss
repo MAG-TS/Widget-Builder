@@ -1,3 +1,4 @@
+
 $blue-color: #37474F;
 $orange-color: #FF9800;
 $white-color: #fff;
@@ -9,6 +10,7 @@ body{
     color: $blue-color;
     .container {
         padding: 16px;
+        widht: 100%;
     }
     h3{
         margin-right: 32px;
@@ -43,6 +45,13 @@ body{
     .avatar-color{
         background-color: #707070;
     }
+  .hi{
+    height: 100px;
+    }
+    .full-height{
+        height: 100%;
+    }
+
     .rs-table-cell-content{
         color: $blue-color;
     }
@@ -52,6 +61,5 @@ body{
             width: 100%;
         }
     }
-    
 }
 

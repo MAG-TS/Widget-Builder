@@ -1,0 +1,31 @@
+.widget-builder-side-bar{
+    background-color: white;
+    flex: 0 0 256px;
+    padding: 16px;
+    height: calc(100vh - 57px)
+}
+.builder-element-box{
+    border-radius: 6px;
+    background-color: white;
+    border: 1px solid #F7F7FA;
+    margin-bottom: 8px;
+    padding: 8px;
+}
+.builder-element-box:hover{
+    border: 1px solid #ffa000;
+}
+.padding-bot-16{
+    padding-bottom: 16px;
+}
+.padding-bot-8 {
+    padding-bottom: 8px;
+}
+.widget-builder-container{
+    height: calc(100vh - 57px);
+    display: flex;
+}
+.widget-builder-main-column{
+    display: flex;
+    flex-flow: column nowrap; 
+    width: 100%;
+}
