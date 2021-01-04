@@ -53,9 +53,7 @@ export default function CoWorkers() {
 
     const getData = (items) => {
         const start = 10*page - 10;
-        console.log(start);
         const end = 10*page - 1;
-        console.log(end)
         let newItems = items.filter((item, i) => {return i >= start && i <= end});
         return newItems
     }
@@ -68,7 +66,7 @@ export default function CoWorkers() {
                     <FlexboxGrid justify="start"  align="middle">
                         <h3>Co-Workers</h3>
                         <div className="search">
-                            <InputGroup size="sm">
+                            <InputGroup size="md">
                                 <Input />
                                 <InputGroup.Button>
                                     <Icon icon="search" />
@@ -121,7 +119,7 @@ export default function CoWorkers() {
                 <Table.Pagination
                     activePage={page}
                     displayLength={10}
-                    total={20}
+                    total={users.length}
                     onChangePage={handleChangePage}
                 />
             </div>
