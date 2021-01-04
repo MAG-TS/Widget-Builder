@@ -14,7 +14,6 @@ import CoWorkers from './co-workers/pages/CoWorkers';
 import Settings from './settings/pages/Settings';
 import 'rsuite/dist/styles/rsuite-default.css';
 import './app.scss';
-import { Container } from 'rsuite';
 
 
 function App() {
@@ -25,8 +24,6 @@ function App() {
 
         <div className="main">
           <Header></Header>
-
-        <Container className="container">
           <Switch>
             <Route path="/" exact>
               <Dashboard />
@@ -43,9 +40,7 @@ function App() {
             <Route path="/settings">
               <Settings />
             </Route>
-          </Switch>
-       
-        </Container>      
+          </Switch>    
         </div>
       </div>
     </Router>
