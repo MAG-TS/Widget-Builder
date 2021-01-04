@@ -1,8 +1,9 @@
 import React from 'react'
-import { Button, Grid, Row, Col, FlexboxGrid } from 'rsuite'
+import { Button, Grid, Row, Col, FlexboxGrid, Container } from 'rsuite';
 export default function Dashboard() {
     return (
-        <div className="show-grid">
+        <Container className="container">
+           
             <FlexboxGrid justify="space-between" align="top">
                 <FlexboxGrid.Item colspan={18}>
                     <h3>My Dashboard</h3>
@@ -13,7 +14,7 @@ export default function Dashboard() {
                     </FlexboxGrid>
                 </FlexboxGrid.Item>
             </FlexboxGrid>
-            
+            <div>
             <Grid fluid>
                 <Row gutter={16}>
                     <Col lg={12}>
@@ -38,7 +39,7 @@ export default function Dashboard() {
                     </Col>
                 </Row>
             </Grid>
-                
-        </div>
+            </div>
+        </Container>
     )
 }

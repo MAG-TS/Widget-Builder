@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Table, FlexboxGrid, Progress, Tag, Input, InputGroup, Icon, Button } from 'rsuite';
+import { Table, FlexboxGrid, Progress, Tag, Input, InputGroup, Icon, Button, Container } from 'rsuite';
 
 
 
@@ -60,7 +60,7 @@ export default function CoWorkers() {
 
 
     return (
-        <div className="show-grid">
+        <Container className="container">
             <FlexboxGrid justify="space-between" align="middle">
                 <FlexboxGrid.Item colspan={18}>
                     <FlexboxGrid justify="start"  align="middle">
@@ -123,6 +123,6 @@ export default function CoWorkers() {
                     onChangePage={handleChangePage}
                 />
             </div>
-        </div>
+        </Container>
     )
 }
