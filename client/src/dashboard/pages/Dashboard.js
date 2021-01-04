@@ -1,5 +1,6 @@
-import React from 'react'
-import { Button, Grid, Row, Col, FlexboxGrid } from 'rsuite'
+import React from 'react';
+import { Button, Grid, Row, Col, FlexboxGrid } from 'rsuite';
+
 export default function Dashboard() {
     return (
         <div className="show-grid">
