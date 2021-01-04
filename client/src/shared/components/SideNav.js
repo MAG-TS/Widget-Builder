@@ -1,5 +1,5 @@
-import { Link, useHistory } from "react-router-dom";
-import React, { useState, useEffect } from 'react'; 
+import { useHistory } from "react-router-dom";
+import React, { useState } from 'react'; 
 
 import './SideNav.scss';
 import { Sidenav, Nav, Icon } from 'rsuite';

@@ -80,7 +80,7 @@ export default function Departments() {
                 <FlexboxGrid.Item colspan={6}>
                     <FlexboxGrid justify="end">
                         <Button className="button-margin-right" color="orange">Table View</Button>
-                        <Button>Card View</Button>
+                        <Button color="white">Card View</Button>
                     </FlexboxGrid>
                 </FlexboxGrid.Item>
             </FlexboxGrid>
