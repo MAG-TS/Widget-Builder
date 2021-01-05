@@ -21,7 +21,6 @@ const SideNav = props => {
     const history = useHistory();
 
     const navItemSelected = (eventKey) => {
-        console.log(currentKey);
         setCurrentKey(eventKey);
         switch(eventKey) {
             case "1":
