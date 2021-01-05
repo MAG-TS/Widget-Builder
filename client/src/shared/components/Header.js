@@ -1,17 +1,17 @@
 import React from "react";
+import { Avatar, Badge } from 'rsuite';
 
 import './Header.scss';
 import 'rsuite/dist/styles/rsuite-default.css';
-import { Avatar, Badge } from 'rsuite';
 
 const Header = props => {
     return (
         <header>
-            <svg width="94.5" height="32" viewBox="0 0 94.5 32">
+            <svg width="100" height="32" viewBox="0 0 94.5 32">
                 <g id="Group_441" transform="translate(-266 -12)">
                     <g id="Group_380" transform="translate(188 1255.021)">
                     <g id="Rectangle_113" transform="translate(78 -1243.021)" fill="none" stroke="#ffa000" strokeWidth="2">
-                        <rect width="32" height="32" rx="2" stroke="none"/>
+                        <rect width="50" height="50" rx="2" stroke="none"/>
                         <rect x="1" y="1" width="30" height="30" rx="1" fill="none"/>
                     </g>
                     <text id="W" transform="translate(85 -1220.021)" fill="#ffa000" fontSize="18" fontFamily="SegoeUI-Semibold, Segoe UI" fontWeight="600"><tspan x="0" y="0">W</tspan></text>
@@ -20,7 +20,6 @@ const Header = props => {
                     <text id="Builder" transform="translate(302 34)" fill="#ffa000" fontSize="18" fontFamily="SegoeUI-Semibold, Segoe UI" fontWeight="600"><tspan x="0" y="0">Builder</tspan></text>
                 </g>
             </svg>
-           
              <div className="header-container">
                 <Badge>
                     <svg width="16" height="19.5" viewBox="0 0 16 19.5">

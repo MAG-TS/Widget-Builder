@@ -1,11 +1,12 @@
 import React from 'react';
-import { Button, Grid, Row, Col, Input, InputGroup, Icon, Tree } from 'rsuite';
-import MondaySvg from '../svgs/MondaySvg';
-import JiraSvg from '../svgs/JiraSvg';
+import { Button, Grid, Row, Col, Input, InputGroup, Icon, Tree, Container } from 'rsuite';
+import MondaySvg from '../../shared/svgs/MondaySvg';
+import JiraSvg from '../../shared/svgs/JiraSvg';
 import './settings.scss';
 
 export default function Settings() {
     return (
+        <Container className="container">
         <div className="show-grid">
             <h3>Settings</h3>
             <Grid fluid>
@@ -93,5 +94,6 @@ export default function Settings() {
                 </Row>
             </Grid>
         </div>
+        </Container>
     )
 }
