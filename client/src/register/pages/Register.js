@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { Container, Col, Input, Button } from 'rsuite';
+import Axios from 'axios';
 
 import WidgetBuilderSvg from '../../shared/svgs/WidgetBuilderSvg';
 import './register.scss';
@@ -13,6 +14,24 @@ const Register = props =>  {
         history.push('/login');
     }
 
+    const onSubmit = (event) => {
+        event.preventDefault();
+
+        Axios({
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                email: event.target.email.value,
+                password: event.target.password.value,
+                name: event.target.jobtitle.value
+            },
+            withCredentials: true,
+            url: "http://localhost:5000/users/register",
+            }).then((res) => console.log(res));
+    }
+
     return (
         <div className="register-container">
             <Container className="container content">
@@ -22,35 +41,38 @@ const Register = props =>  {
 
                 <Col lg={6} className="center">
                     <div className="card">
-                        <h4>Welcome to the Widget Builder Registration</h4>
-                        <div className="button-margin-top">
-                            <label for="username">Username</label>
-                            <Input name="username" placeholder="Username" />
-                        </div>
+                        <form onSubmit={onSubmit}>
+                            <h4>Welcome to the Widget Builder Registration</h4>
                         
-                        <div className="button-margin-top">   
-                            <label for="password">Password</label>
-                            <Input name="password" placeholder="Password" />
-                        </div>
+                            <div className="button-margin-top">
+                                <label for="email">Email</label>
+                                <Input name="email" placeholder="Email" />
+                            </div>
+                            
+                            <div className="button-margin-top">   
+                                <label for="password">Password</label>
+                                <Input name="password" placeholder="Password" />
+                            </div>
+                            
+                            <div className="button-margin-top">
+                                <label for="jobtitle">Job Title (Optional)</label>
+                                <Input name="jobtitle" placeholder="Job Title" />
+                            </div>
                         
-                        <div className="button-margin-top">
-                            <label for="jobtitle">Job Title (Optional)</label>
-                            <Input name="jobtitle" placeholder="Job Title" />
-                        </div>
-                    
-                        <Button 
-                            className="submit-button button-margin-top bold" 
-                            type="submit"
-                            color="orange">
-                            Sing up
-                        </Button>
-                        <Button 
-                            className="submit-button button-margin-top bold" 
-                            color="orange" 
-                            appearance="ghost"
-                            onClick={loginClicked}>
-                            Log in
-                        </Button>
+                            <Button 
+                                className="submit-button button-margin-top bold" 
+                                type="submit"
+                                color="orange">
+                                Sing up
+                            </Button>
+                            <Button 
+                                className="submit-button button-margin-top bold" 
+                                color="orange" 
+                                appearance="ghost"
+                                onClick={loginClicked}>
+                                Log in
+                            </Button>
+                        </form>  
                     </div>
                 </Col>
             </Container>
