@@ -10,10 +10,12 @@ const cookieParser = require("cookie-parser");
 
 // Require routes
 const users = require('./routes/users');
+const coWorkers = require('./routes/co-workers');
 
 require('dotenv').config();
 
-// DB Config
+app.use(express.json());
+
 const uri = process.env.ATLAS_URI;
 
 // Connect to MongoDB
@@ -54,6 +56,9 @@ app.use('/users', users);
 
 // Serve on specified port
 const port = process.env.PORT || 5000;
+app.use('/co-workers', coWorkers);
+
+
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
 });
