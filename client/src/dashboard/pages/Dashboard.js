@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import { Button, Grid, Row, Col, FlexboxGrid, Container } from 'rsuite';
+import Axios from 'axios';
 
-export default function Dashboard() {
+import { AuthContext } from '../../shared/context/authContext';
+
+const Dashboard = () => {
+    const auth = useContext(AuthContext);
+
+    const logoutUser = () => { 
+        auth.logout();
+        Axios({
+            method: "GET",
+            withCredentials: true,
+            url: "http://localhost:5000/users/logout",
+            })
+            .catch(err => { throw err });
+        }
+
     return (
         <Container className="container">
            
@@ -21,6 +37,7 @@ export default function Dashboard() {
                     <Col lg={12}>
                         <div className="card">
                             <h1>Widget Card</h1>
+                            <Button onClick={logoutUser}>Logout</Button>
                         </div>
                     </Col>
                     <Col lg={8}>
@@ -44,3 +61,5 @@ export default function Dashboard() {
         </Container>
     )
 }
+
+export default Dashboard;
