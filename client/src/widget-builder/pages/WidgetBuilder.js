@@ -117,7 +117,7 @@ export default function WidgetBuilder(props) {
             structure: addedElements
         },
         withCredentials: true,
-        url: "https://widget-builder-ba-project.herokuapp.com/widget-builder/create-widget",
+        url: "/widget-builder/create-widget",
         }).then((res) => console.log(res));
     }
 

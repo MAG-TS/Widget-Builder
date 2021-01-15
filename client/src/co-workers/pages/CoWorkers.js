@@ -51,7 +51,7 @@ export default function CoWorkers() {
     }
 
     const calculateWorkload = async (userId) => {
-        const resp = await axios.get(`https://widget-builder-ba-project.herokuapp.com/co-workers/get-workload/${userId}`)
+        const resp = await axios.get(`/co-workers/get-workload/${userId}`)
             .then((allIssues) => {
                 let worktime = 0;
                 let est = 0;

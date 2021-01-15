@@ -13,7 +13,7 @@ const Dashboard = () => {
         Axios({
             method: "GET",
             withCredentials: true,
-            url: "https://widget-builder-ba-project.herokuapp.com/users/logout",
+            url: "/users/logout",
             })
             .catch(err => { throw err });
         }
