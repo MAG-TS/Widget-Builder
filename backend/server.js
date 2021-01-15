@@ -7,7 +7,7 @@ const passport = require("passport");
 const session = require("express-session");
 const sessionSecret = process.env.SESSION_CONF || require('./config/sessionConfig').secret;
 const cookieParser = require("cookie-parser");
-
+const path = require('path')
 // Require routes
 const users = require('./routes/users');
 const widgetBuilder = require('./routes/widget-builder')
@@ -34,9 +34,11 @@ connection.once('open', () => {
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// ADD this url if uploading: https://widget-builder-ba-project.herokuapp.com/
 app.use(
   cors({
-    origin: "http://localhost:3000", // <-- location of the react app were connecting to
+    origin: "https://widget-builder-ba-project.herokuapp.com", // <-- location of the react app were connecting to (http://localhost:3000)
     credentials: true,
   })
 );
@@ -59,7 +61,13 @@ app.use('/users', users);
 app.use('/widget-builder', widgetBuilder);
 app.use('/co-workers', coWorkers);
 
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('../client/build'));
 
+  app.get('*', (req, res) =>{
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+  })
+}
 
 
 
