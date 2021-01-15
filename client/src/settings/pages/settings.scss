@@ -1,0 +1,22 @@
+$blue-color: #37474F;
+$orange-color: #FF9800;
+$white-color: #fff;
+$background-color: #F3F3F5;
+
+.add-api-card {
+    border: 2px dashed $orange-color;
+    color: $orange-color;
+    text-align: center;
+    .api-icon {
+        margin-top: 20px;
+        cursor: pointer;
+    }
+}
+
+.api-return {
+    margin-top: 15px;
+}
+
+.settings-btn {
+    margin-top: 20px;
+}

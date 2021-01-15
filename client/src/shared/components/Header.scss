@@ -1,0 +1,26 @@
+$primary-color: #37474F;
+$white-color: #fff;
+
+header {
+  color: $primary-color;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  align-items: center;
+  background: $white-color;
+
+  .header-container{
+    display: flex;
+    align-items: center;
+    svg{
+        fill: $primary-color
+    }
+    .rs-avatar-image::before{
+        background: $primary-color;
+    }
+    span{
+        font-weight: bold;
+        padding: 0 12px 0 18px;
+    }
+  }
+}
