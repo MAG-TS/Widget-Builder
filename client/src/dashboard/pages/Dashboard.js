@@ -13,7 +13,7 @@ const Dashboard = () => {
         Axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:5000/users/logout",
+            url: "/users/logout",
             })
             .catch(err => { throw err });
         }

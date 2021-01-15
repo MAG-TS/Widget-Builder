@@ -26,7 +26,7 @@ const Login = props =>  {
                 password: event.target.password.value
             },
             withCredentials: true,
-            url: "http://localhost:5000/users/login",
+            url: "/users/login",
             })
             .then((res) => {
                 console.log(res);

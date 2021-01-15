@@ -39,7 +39,7 @@ export default function CoWorkers() {
     }
    
     const getCoWorkers = () => {
-        axios.get('http://localhost:5000/co-workers')
+        axios.get('/co-workers')
             .then((coWorkers) => {
                 //Filters out users that are not supposed to be in the list.
                 //This needs to be  done because Jira categorizes users and apps as the same thing. (Not sure why)
@@ -51,7 +51,7 @@ export default function CoWorkers() {
     }
 
     const calculateWorkload = async (userId) => {
-        const resp = await axios.get(`http://localhost:5000/co-workers/get-workload/${userId}`)
+        const resp = await axios.get(`/co-workers/get-workload/${userId}`)
             .then((allIssues) => {
                 let worktime = 0;
                 let est = 0;

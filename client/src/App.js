@@ -48,7 +48,7 @@ const App = props => {
      Axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:5000/users/user",
+      url: "/users/user",
       })
       .then((user) => {
         if(user.data.email){
