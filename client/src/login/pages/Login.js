@@ -26,7 +26,7 @@ const Login = props =>  {
                 password: event.target.password.value
             },
             withCredentials: true,
-            url: "https://widget-builder-ba-project.herokuapp.com/users/login",
+            url: "https://widget-builder.herokuapp.com/users/login",
             })
             .then((res) => {
                 console.log(res);
