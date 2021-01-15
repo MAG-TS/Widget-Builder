@@ -1,0 +1,13 @@
+{
+  "name": "Widget Builder",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node sevrer.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Tomas Sedurskas & Maria Aldis Gardarsdottir",
+  "license": "ISC"
+}
