@@ -36,14 +36,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ADD this url if uploading: https://widget-builder-ba-project.herokuapp.com/
-/*
+
 app.use(
   cors({
     origin: "https://widget-builder-ba-project.herokuapp.com", // <-- location of the react app were connecting to (http://localhost:3000)
     credentials: true,
   })
 );
-*/
 app.use(
   session({
     secret: sessionSecret,

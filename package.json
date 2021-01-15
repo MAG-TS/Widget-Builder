@@ -5,7 +5,7 @@
     "npm": "6.x",
     "node": "14.x"
   },
-  "main": "./backend/server.js",
+  "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node ./backend/server.js",
