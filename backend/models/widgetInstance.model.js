@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const widgetSettingSchema = new Schema({
+const widgetInstanceSchema = new Schema({
     widgetId: { type: String, required: true },
     order: { type: String, required: true },
     size: { type: Number, required: true },
@@ -10,6 +10,6 @@ const widgetSettingSchema = new Schema({
     timestamps: true
 });
 
-const WidgetSetting = mongoose.model('WidgetSetting', widgetSettingSchema);
+const WidgetInstance = mongoose.model('WidgetInstance', widgetInstanceSchema);
 
-module.exports = WidgetSetting;
+module.exports = WidgetInstance;

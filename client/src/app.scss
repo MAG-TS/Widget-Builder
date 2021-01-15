@@ -12,6 +12,11 @@ body{
         padding: 16px;
         widht: 100%;
     }
+    textarea{
+        height: 100%;
+        resize: none;
+        width: 100%;
+    }
     h3{
         margin-right: 32px;
     }
@@ -60,6 +65,38 @@ body{
         .main{
             width: 100%;
         }
+    }
+    .heading-small{
+        font-size: 16px;
+        font-weight:bold;
+    }
+    .heading-medium {
+        font-size: 26px;
+        font-weight: bold;
+    }
+    .heading-large {
+        font-size: 36px;
+        font-weight: bold;
+    }
+    .hide-input-box{
+        padding: 4px 0;
+        border: none
+    }
+    .hide-input-box:focus{
+        outline: 1px solid #ffa000;
+    }
+    .hide-input-box::placeholder{
+        color: #d6d6d6
+    }
+    .element{
+        padding: 8px 32px;
+        margin: 8px 0;
+        transition: all 0.2 ease-out;
+    }
+    .element:hover{
+        border-right: 24px solid #ffa000;
+        padding-right: 8px;
+        outline: 1px solid #ffa000;
     }
 }
 
