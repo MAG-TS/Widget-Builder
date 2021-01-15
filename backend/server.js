@@ -64,11 +64,12 @@ app.use('/co-workers', coWorkers);
 
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static('../client/build'));
-
+  /*
   app.get('*', (req, res) => {
      var reqPath = path.join(__dirname, '../'); 
      res.sendFile(path.resolve(reqPath, "client", "build", "index.html"))
   });
+  */
 }
 
 
