@@ -28,7 +28,7 @@ const Register = props =>  {
                 name: event.target.jobtitle.value
             },
             withCredentials: true,
-            url: "https://widget-builder-ba-project.herokuapp.com/users/register",
+            url: "/users/register",
             }).then((res) => console.log(res));
     }
 
