@@ -36,7 +36,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ADD this url if uploading: https://widget-builder-ba-project.herokuapp.com/
-
 app.use(
   cors({
     origin: "https://widget-builder-ba-project.herokuapp.com", // <-- location of the react app were connecting to (http://localhost:3000)
@@ -64,12 +63,10 @@ app.use('/co-workers', coWorkers);
 
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static('../client/build'));
-  /*
+
   app.get('*', (req, res) => {
-     var reqPath = path.join(__dirname, '../'); 
-     res.sendFile(path.resolve(reqPath, "client", "build", "index.html"))
+     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"))
   });
-  */
 }
 
 
