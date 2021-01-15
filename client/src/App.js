@@ -48,7 +48,7 @@ const App = props => {
      Axios({
       method: "GET",
       withCredentials: true,
-      url: "/users/user",
+      url: "https://widget-builder-ba-project.herokuapp.com/users/user",
       })
       .then((user) => {
         if(user.data.email){
