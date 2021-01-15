@@ -28,7 +28,7 @@ const Register = props =>  {
                 name: event.target.jobtitle.value
             },
             withCredentials: true,
-            url: "http://localhost:5000/users/register",
+            url: "/users/register",
             }).then((res) => console.log(res));
     }
 
