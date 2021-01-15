@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 
 // Require routes
 const users = require('./routes/users');
+const widgetBuilder = require('./routes/widget-builder')
 const coWorkers = require('./routes/co-workers');
 
 require('dotenv').config();
@@ -53,6 +54,7 @@ require('./config/passport')(passport);
 
 // Routes
 app.use('/users', users);
+app.use('/widget-builder', widgetBuilder);
 
 // Serve on specified port
 const port = process.env.PORT || 5000;

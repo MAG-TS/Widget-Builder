@@ -6,7 +6,7 @@ const widgetSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     api: { type: String, required: false },
-    structure: { type: Mixes, required: true }
+    structure: { type: Schema.Types.Mixed, required: true }
 },{
     timestamps: true
 });
