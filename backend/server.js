@@ -52,13 +52,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
 
+// Serve on specified port
+const port = process.env.PORT || 5000;
 // Routes
 app.use('/users', users);
 app.use('/widget-builder', widgetBuilder);
-
-// Serve on specified port
-const port = process.env.PORT || 5000;
 app.use('/co-workers', coWorkers);
+
+
+
 
 
 app.listen(port, () => {
