@@ -49,13 +49,14 @@ app.use(
     saveUninitialized: true,
   })
 );
+
 app.use(cookieParser(sessionSecret));
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
 
 // Serve on specified port
-const port = process.env.PORT || 5000;
+
 // Routes
 app.use('/users', users);
 app.use('/widget-builder', widgetBuilder);
@@ -68,6 +69,7 @@ if(process.env.NODE_ENV === 'production'){
      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   });
 }
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
