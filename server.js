@@ -15,7 +15,7 @@ const coWorkers = require('./routes/co-workers');
 
 require('dotenv').config();
 
-//app.use(express.json());
+app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
 
