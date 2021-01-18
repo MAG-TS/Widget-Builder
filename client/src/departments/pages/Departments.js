@@ -79,8 +79,8 @@ export default function Departments() {
                 </FlexboxGrid.Item>
                 <FlexboxGrid.Item colspan={6}>
                     <FlexboxGrid justify="end">
-                        <Button className="button-margin-right" color="orange">Table View</Button>
-                        <Button color="white">Card View</Button>
+                        <Button className="button-margin-right button-shadow" color="orange">Table View</Button>
+                        <Button className="button-shadow" color="white">Card View</Button>
                     </FlexboxGrid>
                 </FlexboxGrid.Item>
             </FlexboxGrid>
@@ -115,7 +115,7 @@ export default function Departments() {
                 />
             </div>
             <FlexboxGrid justify="end" align="top">
-                <Button className="button-margin-top" color="orange">Add New Department</Button>
+                <Button className="button-margin-top button-shadow" color="orange">Add New Department</Button>
             </FlexboxGrid>
             
         </Container>

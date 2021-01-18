@@ -61,13 +61,13 @@ const Register = props =>  {
                         </div>
                     
                         <Button 
-                            className="submit-button button-margin-top bold" 
+                            className="submit-button button-margin-top bold button-shadow" 
                             type="submit" 
                             color="orange">
                             Sing up
                         </Button>
                         <Button 
-                            className="submit-button divider-margin-top bold" 
+                            className="submit-button divider-margin-top bold button-shadow" 
                             color="orange"
                             onClick={loginClicked}
                             appearance="ghost">
