@@ -23,4 +23,20 @@ header {
         padding: 0 12px 0 18px;
     }
   }
+
+  .rs-avatar {
+    cursor: pointer;
+    z-index: 10;
+    &:hover{
+      box-shadow: 5px 5px 5px rgb(226, 226, 226);
+    }
+  }
+
+  .curr-status-row{
+    display: flex;
+    flex-direction: column;
+    span{
+      width: 60px !important;
+    }
+  }
 }

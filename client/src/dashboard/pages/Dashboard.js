@@ -6,17 +6,6 @@ import Axios from 'axios';
 import { AuthContext } from '../../shared/context/authContext';
 
 const Dashboard = () => {
-    const auth = useContext(AuthContext);
-
-    const logoutUser = () => { 
-        auth.logout();
-        Axios({
-            method: "GET",
-            withCredentials: true,
-            url: "/users/logout",
-            })
-            .catch(err => { throw err });
-        }
 
     return (
         <Container className="container">
@@ -36,7 +25,6 @@ const Dashboard = () => {
                     <Col lg={12}>
                         <div className="card">
                             <h1>Widget Card</h1>
-                            <Button onClick={logoutUser}>Logout</Button>
                         </div>
                     </Col>
                     <Col lg={8}>

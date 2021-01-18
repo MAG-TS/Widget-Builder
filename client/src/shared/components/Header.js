@@ -1,10 +1,57 @@
-import React from "react";
-import { Avatar, Badge } from 'rsuite';
+import React, { useState, useContext } from "react";
+import Popup from "./popup/Popup";
+import { AuthContext } from '../../shared/context/authContext';
+
+import { Avatar, Badge, Toggle, Input, Button, Divider } from 'rsuite';
+import Axios from 'axios';
+
 
 import './Header.scss';
 import 'rsuite/dist/styles/rsuite-default.css';
 
 const Header = props => {
+    const [popupOpen, setPopupOpen] = useState(null);
+
+    const auth = useContext(AuthContext);
+
+    const logoutUser = () => { 
+        auth.logout();
+        Axios({
+            method: "GET",
+            withCredentials: true,
+            url: "/users/logout",
+            })
+            .catch(err => { throw err });
+    }
+
+    // Popup
+   let clearPopup = 
+    popupOpen === true ? (
+        <Popup clearPopupState={() => clearPopupState()}>
+            <div className="curr-status-row">
+                <lable for="toggle">Current Status</lable>
+                <Toggle id="toggle" size="md" checkedChildren="Busy" unCheckedChildren="Free"/>
+            </div>
+
+            <lable className="button-margin-top" for="statu-note">Status Note</lable>
+            <Input name="status-note" placeholder="Status note" />
+
+            <lable className="button-margin-top" for="statu-note">Job Title</lable>
+            <Input name="job-status" placeholder="Status note" />
+            
+            <Button color="orange" className="button-shadow button-margin-top" onClick={() => clearPopupState()}>Save Changes</Button>
+
+            <Divider/>
+
+            <Button className="button-shadow" onClick={logoutUser}>Logout</Button>
+        </Popup> 
+        ) : null;
+
+    // Clear Popup state when the Popup is closed
+    const clearPopupState = () => {
+        setPopupOpen(null);
+    }
+
     return (
         <header>
             <svg width="100" height="32" viewBox="0 0 94.5 32">
@@ -20,6 +67,9 @@ const Header = props => {
                     <text id="Builder" transform="translate(302 34)" fill="#ffa000" fontSize="18" fontFamily="SegoeUI-Semibold, Segoe UI" fontWeight="600"><tspan x="0" y="0">Builder</tspan></text>
                 </g>
             </svg>
+
+            {clearPopup}
+
              <div className="header-container">
                 <Badge>
                     <svg width="16" height="19.5" viewBox="0 0 16 19.5">
@@ -28,9 +78,10 @@ const Header = props => {
                 </Badge>
                 <span>Jakob Larssen</span>
                 <Badge>
-                    <Avatar size="sm" src="https://404.error" alt="RS"></Avatar>
+                    <Avatar className="cursor-pointer" size="sm" src="https://404.error" alt="RS" onClick={() => setPopupOpen(true)}></Avatar>
                 </Badge>
              </div>
+             
         </header>
     )
 }
