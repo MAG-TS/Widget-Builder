@@ -52,17 +52,17 @@ const Login = props =>  {
                             
                             <div className="button-margin-top">   
                                 <label for="password">Password</label>
-                                <Input name="password" placeholder="Password" />
+                                <Input name="password" type="password" placeholder="Password" />
                             </div>
                         
                             <Button 
-                                className="submit-button button-margin-top bold" 
+                                className="submit-button button-margin-top bold button-shadow" 
                                 type="submit" 
                                 color="orange">
                                 Log in
                             </Button>
                             <Button 
-                                className="submit-button divider-margin-top bold" 
+                                className="submit-button divider-margin-top bold button-shadow" 
                                 onClick={registerClicked}
                                 color="orange" 
                                 appearance="ghost">

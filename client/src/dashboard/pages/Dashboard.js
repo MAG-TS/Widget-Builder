@@ -20,14 +20,13 @@ const Dashboard = () => {
 
     return (
         <Container className="container">
-           
             <FlexboxGrid justify="space-between" align="top">
                 <FlexboxGrid.Item colspan={18}>
                     <h3>My Dashboard</h3>
                 </FlexboxGrid.Item>
                 <FlexboxGrid.Item colspan={6} >
                     <FlexboxGrid justify="end">
-                        <Button color="orange" appearance="primary" >Edit Dashboard</Button>
+                        <Button color="orange button-shadow" appearance="primary" >Edit Dashboard</Button>
                     </FlexboxGrid>
                 </FlexboxGrid.Item>
             </FlexboxGrid>

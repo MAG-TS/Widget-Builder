@@ -43,8 +43,8 @@ export default function Settings() {
                                 }]} 
                                 style={{ width: 246 }}
                             />
-                            <Button className="button-margin-right settings-btn" color="orange">Save Changes</Button>
-                            <Button className="settings-btn" color="orange" appearance="ghost">Remove API</Button>
+                            <Button className="button-margin-right settings-btn button-shadow" color="orange">Save Changes</Button>
+                            <Button className="settings-btn button-shadow" color="orange" appearance="ghost">Remove API</Button>
                         </div>
                     </Col>
 

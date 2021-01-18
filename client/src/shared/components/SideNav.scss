@@ -20,7 +20,12 @@ $white-color: #fff;
         margin: 12px;
         text-align: right;
         svg {
+            transition: 0.2s ease-in;
             cursor: pointer;
+            &:hover {
+                box-shadow: 5px 5px 5px rgb(226, 226, 226);
+                border-radius: 5px;
+            }
         }
     }
 }

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Button, FlexboxGrid, ButtonGroup, Input } from 'rsuite';
 import './builder.scss';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import HeadingSmall from './HeadingSmall';
-import HeadingMedium from './HeadingMedium';
-import HeadingLarge from './HeadingLarge';
-import Paragraph from './Paragraph';
-import Link from './Link';
+import HeadingSmall from '../components/HeadingSmall';
+import HeadingMedium from '../components/HeadingMedium';
+import HeadingLarge from '../components/HeadingLarge';
+import Paragraph from '../components/Paragraph';
+import Link from '../components/Link';
 import Axios from 'axios';
 
 export default function WidgetBuilder(props) {
@@ -161,10 +161,10 @@ export default function WidgetBuilder(props) {
                 <FlexboxGrid justify="center">
                     <FlexboxGrid.Item>
                             <ButtonGroup id="size-btn-group">
-                            <Button onClick={changeCardSize} id="size4" value="6" appearance='default' >4 Column</Button>
-                            <Button onClick={changeCardSize} id="size6" value="12" appearance='default'>6 Column</Button>
-                            <Button onClick={changeCardSize} id="size8" value="18" appearance='default'>8 Column</Button>
-                            <Button onClick={changeCardSize} id="size12" value="24" appearance='default' color="orange">12 Column</Button>
+                            <Button onClick={changeCardSize} id="size4" value="6" appearance='default' className="button-shadow">4 Column</Button>
+                            <Button onClick={changeCardSize} id="size6" value="12" appearance='default' className="button-shadow">6 Column</Button>
+                            <Button onClick={changeCardSize} id="size8" value="18" appearance='default' className="button-shadow">8 Column</Button>
+                            <Button onClick={changeCardSize} id="size12" value="24" appearance='default' className="button-shadow" color="orange">12 Column</Button>
                             </ButtonGroup>
                     </FlexboxGrid.Item>
                 </FlexboxGrid>
@@ -208,10 +208,10 @@ export default function WidgetBuilder(props) {
                     <label>Widget description</label>
                     <textarea className="widget-description" onChange={handleDescription} />
                     <ButtonGroup justified className="padding-bot-16">
-                        <Button appearance='default' color="orange">API</Button>
-                        <Button appearance='disabled'>CSS</Button>
+                        <Button appearance='default' color="orange" className="button-shadow">API</Button>
+                        <Button appearance='disabled' className="button-shadow">CSS</Button>
                     </ButtonGroup>
-                    <Button id="submit-btn" className="width-100" appearance='default' color="orange" onClick={onSubmit}>Create widget</Button>
+                    <Button id="submit-btn" className="width-100 button-shadow" appearance='default' color="orange" onClick={onSubmit}>Create widget</Button>
                
             </div>
             </DragDropContext>

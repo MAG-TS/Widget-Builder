@@ -51,7 +51,7 @@ const Register = props =>  {
                             
                             <div className="button-margin-top">   
                                 <label for="password">Password</label>
-                                <Input name="password" placeholder="Password" />
+                                <Input name="password" placeholder="Password" type="password"/>
                             </div>
                             
                             <div className="button-margin-top">
@@ -60,13 +60,13 @@ const Register = props =>  {
                             </div>
                         
                             <Button 
-                                className="submit-button button-margin-top bold" 
+                                className="submit-button button-margin-top bold button-shadow" 
                                 type="submit"
                                 color="orange">
                                 Sing up
                             </Button>
                             <Button 
-                                className="submit-button button-margin-top bold" 
+                                className="submit-button button-margin-top bold button-shadow" 
                                 color="orange" 
                                 appearance="ghost"
                                 onClick={loginClicked}>

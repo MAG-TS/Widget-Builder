@@ -124,8 +124,8 @@ export default function CoWorkers() {
                 </FlexboxGrid.Item>
                 <FlexboxGrid.Item colspan={6}>
                     <FlexboxGrid justify="end">
-                        <Button className="button-margin-right" color="orange">Table View</Button>
-                        <Button>Card View</Button>
+                        <Button className="button-margin-right button-shadow" color="orange">Table View</Button>
+                        <Button className="button-shadow">Card View</Button>
                     </FlexboxGrid>
                 </FlexboxGrid.Item>
             </FlexboxGrid>
@@ -164,7 +164,7 @@ export default function CoWorkers() {
                     onChangePage={handleChangePage}
                 />
             </div>
-            <button onClick={getCoWorkers}>GET COWORKERS</button>
+            <Button onClick={getCoWorkers} className="button-shadow" color="orange">Get Co-Workers</Button>
         </Container>
     )
 }
