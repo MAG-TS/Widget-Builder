@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Popup from "./popup/Popup";
 import { AuthContext } from '../../shared/context/authContext';
 
@@ -11,8 +11,19 @@ import 'rsuite/dist/styles/rsuite-default.css';
 
 const Header = props => {
     const [popupOpen, setPopupOpen] = useState(null);
+    const [currentStatus, setCurrentStatus] = useState(null);
+    const [statusNote, setStatusNote] = useState(null);
+    const [jobTitle, setJobTitle] = useState(null);
 
     const auth = useContext(AuthContext);
+
+    useEffect(() => {
+        if (auth.currUser) {
+            setCurrentStatus(auth.currUser.status);
+            setJobTitle(auth.currUser.name);
+            setStatusNote(auth.currUser.message);
+        }
+    }, [auth])
 
     const logoutUser = () => { 
         auth.logout();
@@ -24,20 +35,23 @@ const Header = props => {
             .catch(err => { throw err });
     }
 
+    // update user
+
+
     // Popup
    let clearPopup = 
     popupOpen === true ? (
         <Popup clearPopupState={() => clearPopupState()}>
             <div className="curr-status-row">
                 <lable for="toggle">Current Status</lable>
-                <Toggle id="toggle" size="md" checkedChildren="Busy" unCheckedChildren="Free"/>
+                <Toggle id="toggle" defaultChecked={currentStatus} onChange={(boolean) => setCurrentStatus(boolean)}	size="md" checkedChildren="Free" unCheckedChildren="Busy"/>
             </div>
 
             <lable className="button-margin-top" for="statu-note">Status Note</lable>
-            <Input name="status-note" placeholder="Status note" />
+            <Input name="status-note" value={statusNote} onChange={(event) => setStatusNote(event)} placeholder="Status note" />
 
             <lable className="button-margin-top" for="statu-note">Job Title</lable>
-            <Input name="job-status" placeholder="Status note" />
+            <Input name="job-status" value={jobTitle} onChange={(event) => setJobTitle(event)} placeholder="Status note" />
             
             <Button color="orange" className="button-shadow button-margin-top" onClick={() => clearPopupState()}>Save Changes</Button>
 

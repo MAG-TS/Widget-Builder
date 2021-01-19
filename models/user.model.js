@@ -16,7 +16,7 @@ const userSchema = new Schema({
     jobTitle: { type: String, required: false },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    status: { type: Boolean, required: false },
+    status: { type: Boolean, required: false, default: true },
     message: { type: String, required: false,  max: 200},
     myDashboardWidgets: { 
         type: mongoose.Schema.Types.ObjectId, 
