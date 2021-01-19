@@ -12,7 +12,8 @@ const notificationSchema = new Schema({
 });
 
 const userSchema = new Schema({
-    name:{ type: String, required: true },
+    name:{ type: String, required: false, default: '' },
+    jobTitle: { type: String, required: false },
     email: { type: String, required: true },
     password: { type: String, required: true },
     status: { type: Boolean, required: false },
@@ -22,7 +23,7 @@ const userSchema = new Schema({
         ref: 'myDashboardWidget' 
     },
     notifications: [notificationSchema],
-    jiraId: { type: String, required: false }
+    jiraId: { type: String, required: false, default: null }
 },{
     timestamps: true
 });

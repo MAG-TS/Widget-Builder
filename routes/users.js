@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
-
+const axios = require('axios');
 // Require Models
 const User = require('../models/user.model');
 
@@ -49,7 +49,7 @@ router.post("/register", (req, res) => {
         const newUser = new User({
           email: req.body.email,
           password: hashedPassword,
-          name: "jobtitle"
+          jobTitle: req.body.jobTitle
         });
         await newUser.save();
         res.send("User Created");
@@ -72,6 +72,37 @@ router.post("/login", (req, res, next) => {
       }
     })(req, res, next);
   });
+
+
+router.get('/register-step-two/get-all-jira-users', (req, res) => {
+    const config = {
+      headers: {
+          'Authorization': `Basic ${Buffer.from(
+          'widget.builder.ba.project@gmail.com:Xd9Rwk5kyrRstNo4bliI5806'
+        ).toString('base64')}`,
+        'Accept': 'application/json'
+      }
+    }
+    axios.get('https://widget-builder-ba-project-19.atlassian.net/rest/api/3/users/search', config)
+            .then((response) => {
+                res.send(response.data);
+            })
+            .catch(err => console.log(err));
+});
+
+router.put("/register-step-two/link-jira-account", (req, res) => {
+  
+    User.findOne({email: req.body.email}).then(user => 
+      {
+        user.jiraId = req.body.jiraId,
+        user.name = req.body.name
+        user.save()
+        .then(() => res.json('Account Linked'))
+        .catch(err => res.status(400).json('Error ' + err));
+      }
+    ).catch(err => res.status(400).json('Error ' + err));
+  }
+);
 
 
 module.exports = router;

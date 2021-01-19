@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { Button, Grid, Row, Col, FlexboxGrid, Container } from 'rsuite';
 import Axios from 'axios';
 
@@ -17,6 +17,9 @@ const Dashboard = () => {
             })
             .catch(err => { throw err });
         }
+
+        
+
 
     return (
         <Container className="container">
