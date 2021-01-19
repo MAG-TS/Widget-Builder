@@ -25,11 +25,11 @@ const Register = props =>  {
             data: {
                 email: event.target.email.value,
                 password: event.target.password.value,
-                name: event.target.jobtitle.value
+                jobTitle: event.target.jobTitle.value
             },
             withCredentials: true,
             url: "/users/register",
-            }).then((res) => console.log(res));
+            }).then((res) => history.push('/login'));
     }
 
     return (
@@ -55,8 +55,8 @@ const Register = props =>  {
                             </div>
                             
                             <div className="button-margin-top">
-                                <label for="jobtitle">Job Title (Optional)</label>
-                                <Input name="jobtitle" placeholder="Job Title" />
+                                <label for="jobTitle">Job Title (Optional)</label>
+                                <Input name="jobTitle" placeholder="Job Title" />
                             </div>
                         
                             <Button 

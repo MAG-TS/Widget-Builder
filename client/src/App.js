@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   Switch,
   Route,
@@ -54,7 +54,12 @@ const App = props => {
         if(user.data.email){
           console.log(user.data);
           login(user.data);
-          return true;
+          if(user.data.jiraId === null){
+                    history.push('/register-step-two');
+                } else {
+                    history.push('/');
+                }
+          //return true;
         }else {
           logout(false);
           return false;
@@ -66,6 +71,8 @@ const App = props => {
       return true;
     });
   };
+
+
 
  // Get current user's status
  async function status() {
@@ -84,6 +91,8 @@ const App = props => {
     )} />
   );
   
+  
+
   let route;
 
   if (location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/register-step-two") {
@@ -94,25 +103,27 @@ const App = props => {
         <Route path="/register-step-two" component={ RegisterTwo }/>
       </React.Fragment>
     );
-  } else{
-    route = (
-    <React.Fragment>
-      <div className="main-container">
-       <SideNav className="side-nav"></SideNav>
-        <div className="main">
-          <Header></Header>
-          <Switch>
-            <PrivateRoute path="/" exact component={ Dashboard }/>
-            <PrivateRoute path="/widget-builder" component={ WidgetBuilder }/>
-            <PrivateRoute path="/departments" component={ Departments }/>
-            <Route path="/co-workers" component={ CoWorkers }/>
-            <Route path="/settings" component={ Settings }/>
-          </Switch>    
-        </div>
-      </div>
-    </React.Fragment>
-    )
-  }
+        
+      } else {  
+      route = (
+        <React.Fragment>
+          <div className="main-container">
+          <SideNav className="side-nav"></SideNav>
+            <div className="main">
+              <Header></Header>
+              <Switch>
+                <PrivateRoute path="/" exact component={ Dashboard }/>
+                <PrivateRoute path="/widget-builder" component={ WidgetBuilder }/>
+                <PrivateRoute path="/departments" component={ Departments }/>
+                <Route path="/co-workers" component={ CoWorkers }/>
+                <Route path="/settings" component={ Settings }/>
+              </Switch>    
+            </div>
+          </div>
+        </React.Fragment>
+      )
+    }
+  
 
   return (
     <AuthContext.Provider value={{loggedIn: loggedIn, login: login, logout: logout, currUser: currUser}}>
