@@ -20,11 +20,12 @@ const Header = props => {
     useEffect(() => {
         if (auth.currUser) {
             setCurrentStatus(auth.currUser.status);
-            setJobTitle(auth.currUser.name);
+            setJobTitle(auth.currUser.jobTitle);
             setStatusNote(auth.currUser.message);
         }
     }, [auth])
 
+    // logout user
     const logoutUser = () => { 
         auth.logout();
         Axios({
@@ -35,10 +36,7 @@ const Header = props => {
             .catch(err => { throw err });
     }
 
-    // update user
-
-
-    // Popup
+    // Logo Popup
    let clearPopup = 
     popupOpen === true ? (
         <Popup clearPopupState={() => clearPopupState()}>
@@ -53,7 +51,7 @@ const Header = props => {
             <lable className="button-margin-top" for="statu-note">Job Title</lable>
             <Input name="job-status" value={jobTitle} onChange={(event) => setJobTitle(event)} placeholder="Status note" />
             
-            <Button color="orange" className="button-shadow button-margin-top" onClick={() => clearPopupState()}>Save Changes</Button>
+            <Button color="orange" className="button-shadow button-margin-top" onClick={() => onSave()}>Save Changes</Button>
 
             <Divider/>
 
@@ -64,6 +62,32 @@ const Header = props => {
     // Clear Popup state when the Popup is closed
     const clearPopupState = () => {
         setPopupOpen(null);
+    }
+
+    // PUT
+    // update user changes (status + message + jobTitle)
+    const onSave = () => {
+        setPopupOpen(null);
+        Axios({
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                status: currentStatus,
+                message: statusNote,
+                jobTitle: jobTitle
+            },
+            withCredentials: true,
+            url: `/users/update-user-status/${auth.currUser._id}`,
+            })
+        .then((res) => {
+            auth.currUser.statusNote = statusNote;
+            auth.currUser.status = currentStatus;
+            auth.currUser.jobTitle = jobTitle;
+            
+        })
+        .catch(err => { throw err });
     }
 
     return (

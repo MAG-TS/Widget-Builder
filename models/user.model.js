@@ -17,7 +17,7 @@ const userSchema = new Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     status: { type: Boolean, required: false, default: true },
-    message: { type: String, required: false,  max: 200},
+    message: { type: String, required: false,  max: 200, default: ''},
     myDashboardWidgets: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'myDashboardWidget' 

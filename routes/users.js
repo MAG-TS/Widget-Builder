@@ -73,7 +73,8 @@ router.post("/login", (req, res, next) => {
     })(req, res, next);
   });
 
-
+// GET
+// Get jira users
 router.get('/register-step-two/get-all-jira-users', (req, res) => {
     const config = {
       headers: {
@@ -84,25 +85,44 @@ router.get('/register-step-two/get-all-jira-users', (req, res) => {
       }
     }
     axios.get('https://widget-builder-ba-project-19.atlassian.net/rest/api/3/users/search', config)
-            .then((response) => {
-                res.send(response.data);
-            })
-            .catch(err => console.log(err));
+          .then((response) => {
+              res.send(response.data);
+          })
+          .catch(err => console.log(err));
 });
 
+// PUT
+// Update users to include jira id + name
 router.put("/register-step-two/link-jira-account", (req, res) => {
   
-    User.findOne({email: req.body.email}).then(user => 
-      {
-        user.jiraId = req.body.jiraId,
-        user.name = req.body.name
-        user.save()
-        .then(() => res.json('Account Linked'))
-        .catch(err => res.status(400).json('Error ' + err));
-      }
-    ).catch(err => res.status(400).json('Error ' + err));
-  }
-);
+    User.findOne({email: req.body.email})
+      .then(user => 
+        {
+          user.jiraId = req.body.jiraId,
+          user.name = req.body.name
+          user.save()
+          .then(() => res.json('Account Linked'))
+          .catch(err => res.status(400).json('Error ' + err));
+        }
+      )
+      .catch(err => res.status(400).json('Error ' + err));
+  });
+
+
+// PUT
+// Update users current status + status note + job title
+router.put("/update-user-status/:id", (req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      user.status = req.body.status,
+      user.message = req.body.message,
+      user.jobTitle = req.body.jobTitle
+      user.save()
+      .then(() => res.json('User updated!'))
+      .catch(err => res.status(400).json('Error ' + err));
+    })
+    .catch(err => res.status(400).json('Error ' + err));
+});
 
 
 module.exports = router;
