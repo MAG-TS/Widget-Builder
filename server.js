@@ -12,6 +12,7 @@ const path = require('path')
 const users = require('./routes/users');
 const widgetBuilder = require('./routes/widget-builder')
 const coWorkers = require('./routes/co-workers');
+const widgets = require('./routes/widgets');
 
 require('dotenv').config();
 
@@ -61,6 +62,7 @@ require('./config/passport')(passport);
 app.use('/users', users);
 app.use('/widget-builder', widgetBuilder);
 app.use('/co-workers', coWorkers);
+app.use('/widgets', widgets);
 
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static('client/build'));

@@ -1,3 +1,4 @@
+/*
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -13,3 +14,4 @@ const widgetInstanceSchema = new Schema({
 const WidgetInstance = mongoose.model('WidgetInstance', widgetInstanceSchema);
 
 module.exports = WidgetInstance;
+*/

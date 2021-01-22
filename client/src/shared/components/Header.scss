@@ -8,10 +8,12 @@ header {
   padding: 8px;
   align-items: center;
   background: $white-color;
+  border-bottom: 1px solid #ccc;
 
   .header-container{
     display: flex;
     align-items: center;
+    
     svg{
         fill: $primary-color
     }

@@ -17,6 +17,9 @@ body{
         resize: none;
         width: 100%;
     }
+    .full-width {
+        width: 100%;
+    }
     h3{
         margin-right: 32px;
     }
@@ -25,6 +28,19 @@ body{
         padding: 32px;
         border-radius: 6px;
         margin-top: 16px;
+    }
+    .orange-border {
+        border: 2px solid $orange-color !important;
+        border-radius: 5px;
+    }
+    .gray-card {
+        background: $background-color;
+        padding: 16px;
+        border-radius: 6px;
+        margin-top: 16px;
+        transition: all 0.2s ease-in;
+        border: 2px solid $background-color;
+        cursor: pointer;
     }
     .rs-btn-white {
         background:$white-color;
@@ -71,9 +87,9 @@ body{
     }
     .main-container{
         display: flex;
-        .main{
-            width: 100%;
-        }
+    }
+    .main{
+        width: 100%;
     }
     .heading-small{
         font-size: 16px;
@@ -108,5 +124,6 @@ body{
         padding-right: 8px;
         outline: 1px solid #ffa000;
     }
+ 
 }
 
