@@ -6,9 +6,11 @@ import Axios from 'axios';
 import { AuthContext } from '../../shared/context/authContext';
 
 const Dashboard = () => {
+    const history = useHistory();
 
-        
-
+    const editDashboardClicked = () => {
+        history.push('/edit-dashboard');
+    }
 
     return (
         <Container className="container">
@@ -18,7 +20,7 @@ const Dashboard = () => {
                 </FlexboxGrid.Item>
                 <FlexboxGrid.Item colspan={6} >
                     <FlexboxGrid justify="end">
-                        <Button color="orange button-shadow" appearance="primary" >Edit Dashboard</Button>
+                        <Button color="orange button-shadow" appearance="primary" onClick={() => editDashboardClicked()}>Edit Dashboard</Button>
                     </FlexboxGrid>
                 </FlexboxGrid.Item>
             </FlexboxGrid>

@@ -3,8 +3,11 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const axios = require('axios');
+const mongoose = require('mongoose')
+
 // Require Models
 const User = require('../models/user.model');
+const myDashboardWidget = require('../models/myDashboardWidget.model');
 
 // GET
 // Logout
@@ -45,13 +48,24 @@ router.post("/register", (req, res) => {
       if (doc) res.send("User Already Exists");
       if (!doc) {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        let dashId = mongoose.Types.ObjectId();
+        const newMyDashboardWidget = new myDashboardWidget({
+          _id: dashId,
+          widgets: [],
+          widgetSettings: []
+        })
+        await newMyDashboardWidget.save();
   
         const newUser = new User({
           email: req.body.email,
           password: hashedPassword,
-          jobTitle: req.body.jobTitle
+          jobTitle: req.body.jobTitle,
+          myDashboardWidgets: dashId
         });
         await newUser.save();
+
+        
+
         res.send("User Created");
       }
     });
@@ -123,6 +137,22 @@ router.put("/update-user-status/:id", (req, res) => {
     })
     .catch(err => res.status(400).json('Error ' + err));
 });
+
+// POST
+// Save myDashboardWidgets in the User schema
+/*
+router.put("/save-my-dashboard", (req, res) => {
+    User.findById(req.body.currentUserId)
+      .then(user => {
+        console.log(user);
+        user.myDashboardWidgets = req.body.myDashboardId
+        user.save()
+        .then(() => res.json('myDashboardWidgets added to user!'))
+        .catch(err => res.status(400).json('Error ' + err));
+      })
+    .catch(err => res.status(400).json('Error ' + err));
+})
+*/
 
 
 module.exports = router;

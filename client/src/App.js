@@ -10,6 +10,7 @@ import {
 import Header from "./shared/components/Header";
 import SideNav from './shared/components/SideNav';
 import Dashboard from './dashboard/pages/Dashboard';
+import EditDashboard from './dashboard/pages/EditDashboard';
 import WidgetBuilder from './widget-builder/pages/WidgetBuilder';
 import Departments from './departments/pages/Departments';
 import CoWorkers from './co-workers/pages/CoWorkers';
@@ -113,10 +114,11 @@ const App = props => {
               <Header></Header>
               <Switch>
                 <PrivateRoute path="/" exact component={ Dashboard }/>
+                <PrivateRoute path="/edit-dashboard" exact component={ EditDashboard }/>
                 <PrivateRoute path="/widget-builder" component={ WidgetBuilder }/>
                 <PrivateRoute path="/departments" component={ Departments }/>
-                <Route path="/co-workers" component={ CoWorkers }/>
-                <Route path="/settings" component={ Settings }/>
+                <PrivateRoute path="/co-workers" component={ CoWorkers }/>
+                <PrivateRoute path="/settings" component={ Settings }/>
               </Switch>    
             </div>
           </div>
