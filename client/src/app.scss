@@ -23,6 +23,27 @@ body{
     h3{
         margin-right: 32px;
     }
+    input {
+        display: block;
+        width: 100%;
+        color: #575757;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #575757;
+        -webkit-transition: border-color ease-in-out 0.3s;
+        transition: border-color ease-in-out 0.3s;
+        border-radius: 6px;
+        padding: 7px 11px;
+        font-size: 14px;
+        line-height: 1.42857143;
+    }
+    input[type=text]:focus, input[type=password]:focus {
+        border: 1px solid $orange-color;
+        outline: none;
+    }
+    .error {
+        color: red;
+    }
     .card{
         background: $white-color;
         padding: 32px;
