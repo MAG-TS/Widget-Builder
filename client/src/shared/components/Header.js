@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import Popup from "./popup/Popup";
 import { AuthContext } from '../../shared/context/authContext';
 
-import { Avatar, Badge, Toggle, Input, Button, Divider } from 'rsuite';
+import { Avatar, Badge, Toggle, Input, Button, Divider, FlexboxGrid } from 'rsuite';
 import Axios from 'axios';
 
 
@@ -10,18 +10,31 @@ import './Header.scss';
 import 'rsuite/dist/styles/rsuite-default.css';
 
 const Header = props => {
+    const [notifications, setNotifications] = useState([]);
     const [popupOpen, setPopupOpen] = useState(null);
+    const [notificationOpen, setNotificationOpen] = useState(null);
     const [currentStatus, setCurrentStatus] = useState(null);
     const [statusNote, setStatusNote] = useState(null);
     const [jobTitle, setJobTitle] = useState(null);
 
     const auth = useContext(AuthContext);
 
+    const getNotifications = () => {
+        const resp = Axios.get(`/users/${auth.currUser._id}`)
+        .then((result) => {
+        console.log(result.data.notifications)
+        setNotifications(result.data.notifications)
+        })
+        return resp
+    }
+
     useEffect(() => {
+        
         if (auth.currUser) {
             setCurrentStatus(auth.currUser.status);
             setJobTitle(auth.currUser.jobTitle);
             setStatusNote(auth.currUser.message);
+            getNotifications()
         }
     }, [auth])
 
@@ -59,6 +72,35 @@ const Header = props => {
         </Popup> 
         ) : null;
 
+    let notificationPopup = 
+    notificationOpen === true ? (
+        <Popup clearPopupState={() => clearPopupState()}>
+            <h6 className="button-margin-bot">Notifications</h6>
+                <FlexboxGrid align="middle" justify="space-between">
+                        <FlexboxGrid align="middle" justify="space-between">
+                            <Avatar className="margin-right" size="sm" src="https://404.error" alt="TS" onClick={() => setPopupOpen(true)}></Avatar>
+                            <span>Tomas Sedurskas in now busy!</span>
+                        </FlexboxGrid>
+                        
+                        <span>9:57am</span>
+                    
+                </FlexboxGrid>
+            <div>
+            {notifications.map(() => {
+                return(
+                    <div>
+                        <Avatar size="sm" src="https://404.error" alt="TS" onClick={() => setPopupOpen(true)}></Avatar>
+                        <span>Maria Aldis Gardarsdottir</span>
+                    </div>
+                )
+            })
+            }
+            </div>
+            <Button color="orange" className="button-margin-top">Clear All Notifications</Button>
+            
+        </Popup> 
+        ) : null;
+
     // Clear Popup state when the Popup is closed
     const clearPopupState = () => {
         setPopupOpen(null);
@@ -89,6 +131,14 @@ const Header = props => {
         })
         .catch(err => { throw err });
     }
+     const changeNotificationState = () => {
+        if(notificationOpen === null){
+            setNotificationOpen(true);
+        } else {
+            setNotificationOpen(null);
+        }
+        
+    }
 
     return (
         <header>
@@ -107,17 +157,19 @@ const Header = props => {
             </svg>
 
             {clearPopup}
-
+            {notificationPopup}
              <div className="header-container">
-                <Badge>
-                    <svg width="16" height="19.5" viewBox="0 0 16 19.5">
+               <Badge>
+                    <svg onMouseEnter={getNotifications} onClick={() => changeNotificationState()} width="16" height="19.5" viewBox="0 0 16 19.5">
                         <path id="notifications-24px" d="M12,22a2.006,2.006,0,0,0,2-2H10A2,2,0,0,0,12,22Zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4a1.5,1.5,0,0,0-3,0v.68C7.63,5.36,6,7.92,6,11v5L4,18v1H20V18Z" transform="translate(-4 -2.5)" />
                     </svg>
-                </Badge>
-                <span>Jakob Larssen</span>
-                <Badge>
-                    <Avatar className="cursor-pointer" size="sm" src="https://404.error" alt="RS" onClick={() => setPopupOpen(true)}></Avatar>
-                </Badge>
+               </Badge>
+                
+                
+                <span>Maria Aldis Gardarsdottir</span>
+                
+                    <Avatar className="cursor-pointer" size="sm" src="https://404.error" alt="MG" onClick={() => setPopupOpen(true)}></Avatar>
+                
              </div>
              
         </header>

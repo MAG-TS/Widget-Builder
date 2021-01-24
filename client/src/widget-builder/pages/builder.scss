@@ -49,9 +49,9 @@
 .builder-element{
     border-radius: 6px;
     background-color: white;
-    border: 1px solid #F7F7FA;
+    border: 1px solid #e5e5ea;
     margin-bottom: 8px;
-    padding: 8px;
+    padding: 20px;
 }
 .builder-element:hover{
     transition: all 0.2s ease-out;
@@ -114,7 +114,7 @@
 }
 .remove-elements{
     opacity: 0.3;
-    margin-top: 300px;
+    margin-top: 200px;
     color: #f44336;
     font-weight: bold;
     border: 2px solid #f44336;
@@ -136,4 +136,7 @@
 }
 .remove-elements:hover{
     opacity: 1;
+}
+.margin-right{
+    margin-right: 6px
 }

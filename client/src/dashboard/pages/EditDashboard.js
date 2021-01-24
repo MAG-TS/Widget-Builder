@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory, Redirect, Link } from "react-router-dom";
 import { Button, Grid, Row, Col, FlexboxGrid, Container } from 'rsuite';
 import Axios from 'axios';
 
@@ -99,7 +99,10 @@ const EditDashboard = () => {
                     </FlexboxGrid.Item>
                     <FlexboxGrid.Item colspan={6} >
                         <FlexboxGrid justify="end">
-                            <Button color="orange button-shadow" appearance="primary">Edit Dashboard</Button>
+                            <Link to="/">
+                                <Button className="button-shadow" color="orange" appearance="ghost">Finish Editing</Button>
+                            </Link>
+                            
                         </FlexboxGrid>
                     </FlexboxGrid.Item>
                 </FlexboxGrid>
@@ -134,11 +137,14 @@ const EditDashboard = () => {
                     color="orange" 
                     className="button-shadow full-width button-margin-top"
                     onClick={() => addWidget()}>Add Widget</Button>
-
-                 <Button 
+                <Link to="/">
+                    <Button className="button-shadow full-width button-margin-top" color="orange" appearance="ghost">Finish Editing</Button>
+                </Link>
+                 {/*<Button 
                     color="orange" 
                     className="button-shadow full-width button-margin-top"
                     onClick={() => getMyDashboardWidgets()}>Get My Dashboard Widgets</Button>
+                 */}
             </div>
         </div>
     )

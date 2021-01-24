@@ -6,7 +6,7 @@ const Widget = require('../models/widget.model');
 router.post("/create-widget", (req, res) => {
     const name = req.body.name;
     const description = req.body.description;
-    const api = req.body.API;
+    const api = req.body.api;
     const structure = req.body.structure;
 
     const newWidget = new Widget({
