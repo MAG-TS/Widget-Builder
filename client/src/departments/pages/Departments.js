@@ -2,48 +2,36 @@ import React, { useState } from 'react'
 import { Table, FlexboxGrid, Progress, Tag, Input, InputGroup, Icon, Button, Avatar, Container } from 'rsuite';
 
 
-const ProgressCell = ({ rowData, dataKey, ...props }) => (
-    <Table.Cell placement="start" {...props} style={{ padding: 0, height: '100%' }}>
-        <FlexboxGrid align="center" style={{ padding: 0, height: '100%', marginRight: '36px'}}>
-            <Progress.Line percent={rowData[dataKey]} strokeColor="#ffc107" />
-        </FlexboxGrid>
-    </Table.Cell>
-);
-const MembersCell = ({ rowData, dataKey, ...props }) => (
+const Departments = () => {
+
+    const ProgressCell = ({ rowData, dataKey, ...props }) => (
+        <Table.Cell placement="start" {...props} style={{ padding: 0, height: '100%' }}>
+            <FlexboxGrid align="center" style={{ padding: 0, height: '100%', marginRight: '36px'}}>
+                <Progress.Line percent={rowData[dataKey]} strokeColor={rowData[dataKey] < 75 ? '#4caf50' : rowData[dataKey] > 75 && rowData[dataKey] < 100 ? '#ffc107' : "#f44336" } />
+            </FlexboxGrid>
+        </Table.Cell>
+    );
+    const MembersCell = ({ rowData, dataKey, ...props }) => (
+        
+        <Table.Cell placement="center" {...props} style={{ padding: 0, height: '100%' }}>
+            <FlexboxGrid align="start" style={{ padding: '10px', height: '100%' }}>
+                <div className="avatar-group">
+                     {
+                    rowData.members.map(member => 
+                        <Avatar size="sm" className="avatar-margin avatar-color">{member}</Avatar>
+                    )
+                }
+                
+                </div>
+            </FlexboxGrid>
+        </Table.Cell>
+    );
     
-    <Table.Cell placement="center" {...props} style={{ padding: 0, height: '100%' }}>
-        <FlexboxGrid align="start" style={{ padding: '10px', height: '100%' }}>
-            <div className="avatar-group">
-                 {
-                rowData.members.map(member => 
-                    <Avatar size="sm" className="avatar-margin avatar-color">{member}</Avatar>
-                )
-            }
-            
-            </div>
-        </FlexboxGrid>
-    </Table.Cell>
-);
-
-
-export default function Departments() {
-
-
     const fakeData =[
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 175},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 75},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 75},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 85},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 25},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 0},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 75},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 55},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 75},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 40},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 95},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 75},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 45},
-                    {"departmentName": 'Front-end Development', "members": ["MA", "TS", "GM"], "currentGoal": "Some task for front-end", 'workload': 75},
+                    {"departmentName": 'Front-end Development', "members": ["MG", "TL", "AP"], "currentGoal": "Complete coding the UI", 'workload': 175},
+                    {"departmentName": 'Back-end Development', "members": ["TS", "TL"], "currentGoal": "Update the database", 'workload': 40},
+                    {"departmentName": 'Design', "members": ["TS"], "currentGoal": "Finish new design for application", 'workload': 80},
+                    {"departmentName": 'Marketing', "members": ["AP", "TL"], "currentGoal": "Create a new marketing tragedy", 'workload': 20},
                     ];
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
@@ -121,3 +109,5 @@ export default function Departments() {
         </Container>
     )
 }
+
+export default Departments;

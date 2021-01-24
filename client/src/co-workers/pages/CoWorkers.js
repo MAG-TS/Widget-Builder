@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, FlexboxGrid, Progress, Tag, Input, InputGroup, Icon, Button, Container } from 'rsuite';
-
-
-
-const ProgressCell = ({ rowData, dataKey, ...props }) => (
-    <Table.Cell placement="start" {...props} style={{ padding: 0, height: '100%' }}>
-        <FlexboxGrid align="middle" style={{ padding: 0, height: '100%', marginRight: '36px'}}>
-            <Progress.Line percent={rowData[dataKey]} strokeColor={rowData[dataKey] < 75 ? '#4caf50' : rowData[dataKey] > 75 && rowData[dataKey] < 100 ? '#ffc107' : "#f44336" } />
-        </FlexboxGrid>
-    </Table.Cell>
-);
-const StatusCell = ({ rowData, dataKey, ...props }) => (
-    <Table.Cell placement="center" {...props} style={{ padding: 0, height: '100%' }}>
-        <FlexboxGrid justify="start" style={{ padding: '10px', height: '100%' }}>
-            <Tag color={rowData[dataKey] ? 'red' : 'green'}>{rowData[dataKey] ? 'Busy' : 'Free'}</Tag>
-        </FlexboxGrid>
-    </Table.Cell>
-);
+import Axios from 'axios';
 
 
 
 
-export default function CoWorkers() {
+
+const CoWorkers = () => {
+
+    const ProgressCell = ({ rowData, dataKey, ...props }) => (
+        <Table.Cell placement="start" {...props} style={{ padding: 0, height: '100%' }}>
+            <FlexboxGrid align="middle" style={{ padding: 0, height: '100%', marginRight: '36px'}}>
+                <Progress.Line percent={rowData[dataKey]} strokeColor={rowData[dataKey] < 75 ? '#4caf50' : rowData[dataKey] > 75 && rowData[dataKey] < 100 ? '#ffc107' : "#f44336" } />
+            </FlexboxGrid>
+        </Table.Cell>
+    );
+    const StatusCell = ({ rowData, dataKey, ...props }) => (
+        <Table.Cell placement="center" {...props} style={{ padding: 0, height: '100%' }}>
+            <FlexboxGrid justify="start" style={{ padding: '10px', height: '100%' }}>
+                <Tag color={rowData[dataKey] ? 'red' : 'green'}>{rowData[dataKey] ? 'Busy' : 'Free'}</Tag>
+            </FlexboxGrid>
+        </Table.Cell>
+    );
 
     const [page, setPage] = useState(1);
     const [coWorkers, setCoWorkers] = useState([])
@@ -88,18 +88,42 @@ export default function CoWorkers() {
     }
 
     const mergeData = async (atlassianData) => {
+        let users = await getUserInfo();
         let mergedData = [];
+
         for(let i = 0; i < atlassianData.length; i++){
             let person = atlassianData[i];
             let workload = await calculateWorkload(person.accountId);
+            
+            let user = users.filter(user => person.accountId === user.jiraId);
             let newPerson = {};
+
             newPerson.name = person.displayName;
-            //newPerson.status = database.status
+            newPerson.busyStatus = user[0].status;
             newPerson.workload = workload;
-            //newPerson.message = database.message
+            newPerson.message = user[0].message
+            newPerson.jobTitle = user[0].jobTitle;
+            console.log(newPerson);
+
             mergedData.push(newPerson);
         };
+
         setCoWorkers(mergedData);
+    }
+
+    // GET - users from database
+    const getUserInfo = async (userId) => {
+        const users = Axios({
+                method: "GET",
+                withCredentials: true,
+                url: "/users/",
+            })
+            .then((users) => {
+                console.log(users);
+                return users.data;
+            })
+            .catch(err => { throw err });
+        return users;
     }
 
     useEffect(() => {
@@ -164,7 +188,8 @@ export default function CoWorkers() {
                     onChangePage={handleChangePage}
                 />
             </div>
-            <Button onClick={getCoWorkers} className="button-shadow" color="orange">Get Co-Workers</Button>
         </Container>
     )
 }
+
+export default CoWorkers;
