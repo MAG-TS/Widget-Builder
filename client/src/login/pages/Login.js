@@ -1,35 +1,37 @@
 import React, { useContext } from 'react';
 import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { Container, Col, Input, Button } from 'rsuite';
 import Axios from 'axios';
 
 import WidgetBuilderSvg from '../../shared/svgs/WidgetBuilderSvg';
 import '../../register/pages/register.scss';
 
+
 const Login = props =>  {
     const history = useHistory();
+
+    const { register, handleSubmit, watch, errors } = useForm();
+
 
     const registerClicked = () => {
         history.push('/register');
     }
 
-    const onSubmit = (event) => {
-        event.preventDefault();
-
+    const onSubmit = (data) => {
         Axios({
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
             data: {
-                email: event.target.email.value,
-                password: event.target.password.value
+                email: data.email,
+                password: data.password
             },
             withCredentials: true,
             url: "/users/login",
             })
             .then((res) => {
-                console.log(res);
                 history.push('/');
             });
     }
@@ -43,16 +45,18 @@ const Login = props =>  {
 
                 <Col lg={6} className="center">
                     <div className="card">
-                        <form onSubmit={onSubmit}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <h4>Log in</h4>
                             <div className="button-margin-top">
                                 <label for="email">Email</label>
-                                <Input name="email" placeholder="Email" />
+                                <input name="email" type="text" ref={register({ required: true, maxLength: 20 })} placeholder="Email" />
+                                {errors.email && <span className="error">This field is required</span>}
                             </div>
                             
                             <div className="button-margin-top">   
                                 <label for="password">Password</label>
-                                <Input name="password" type="password" placeholder="Password" />
+                                <input name="password" type="password" placeholder="Password" ref={register({ required: true, minLength: 6 })} />
+                                {errors.password && <span className="error">This field is required</span>}
                             </div>
                         
                             <Button 
