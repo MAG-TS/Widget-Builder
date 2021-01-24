@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import { Button, FlexboxGrid, ButtonGroup, Divider, Tree } from 'rsuite';
+import { Button, FlexboxGrid, ButtonGroup, Tree } from 'rsuite';
 import './builder.scss';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import HeadingSmall from '../components/HeadingSmall';
@@ -8,6 +8,8 @@ import HeadingMedium from '../components/HeadingMedium';
 import HeadingLarge from '../components/HeadingLarge';
 import Paragraph from '../components/Paragraph';
 import Link from '../components/Link';
+import ProgressBar from '../components/ProgressBar';
+import ProgressCircle from '../components/ProgressCircle';
 import Axios from 'axios';
 
 export default function WidgetBuilder(props) {
@@ -17,7 +19,9 @@ export default function WidgetBuilder(props) {
         {id: 'Heading-Small'},
         {id: 'Heading-Medium'},
         {id: 'Heading-Large'},
-        {id: 'Paragraph'}
+        {id: 'Paragraph'},
+        {id: 'Progress-Bar'},
+        {id: 'Progress-Circle'}
     ]
     const [counter, setCounter] = useState(0)
     const [availableElements, setAvailableElements] = useState(avaialbleElements);
@@ -34,6 +38,7 @@ export default function WidgetBuilder(props) {
 
 
     const handleElementText = (e) => {
+        console.log(e.target)
         let allAddedElements = addedElements;
         const elementIndex = allAddedElements.findIndex(element => element.id.toString() === e.target.id);
         setLastFocus(allAddedElements[elementIndex].id)
@@ -103,6 +108,8 @@ export default function WidgetBuilder(props) {
         if(props.element === "Heading-Large"){return <HeadingLarge apiKey={props.apiKey} index={props.index} content={props.content} identifier={props.id} handleElementText={handleElementText} selectElement={selectElement} />}
         if(props.element === "Paragraph"){return <Paragraph apiKey={props.apiKey} index={props.index} content={props.content} identifier={props.id} handleElementText={handleElementText} selectElement={selectElement} />}
         if(props.element === "Link"){return <Link apiKey={props.apiKey} index={props.index} content={props.content} identifier={props.id} handleElementText={handleElementText} selectElement={selectElement} />}
+        if(props.element === "Progress-Bar") {return <ProgressBar apiKey={props.apiKey} index={props.index} content={props.content} identifier={props.id} handleElementText={handleElementText} selectElement={selectElement} />}
+        if(props.element === "Progress-Circle") {return <ProgressCircle apiKey={props.apiKey} index={props.index} content={props.content} identifier={props.id} handleElementText={handleElementText} selectElement={selectElement} />}
     }
 
     function handleOnDragEnd(result){
@@ -227,7 +234,6 @@ export default function WidgetBuilder(props) {
                                             {(provided) => 
                                                 <li className="builder-element" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                                     <div>
-                                                        <img src="" />
                                                         <div>{id}</div>
                                                     </div>                               
                                                 </li>
