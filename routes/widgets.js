@@ -33,7 +33,9 @@ router.put('/update-myDashboardWidget', (req, res) => {
 
 // GET
 // Get the widgets stored in myDashbordWidget
-router.get('/my-dashboard-widgets/:_id', (req, res) => {
+router.get('/my-dashboard-widgets/:id', (req, res) => {
+    console.log("Request body")
+    console.log(req.params.id)
     // filter in documents from the “joined” collection (Widgets)
     // filter widgets that have the same id as stored in MyDashboardWidget collection
     MyDashboardWidget.aggregate([
@@ -43,7 +45,7 @@ router.get('/my-dashboard-widgets/:_id', (req, res) => {
               from: "widgets",
               localField: "widgets",
               foreignField: "_id",
-              as: "dashboardWidgets"
+              as: "widgets"
             }
        }
     ])

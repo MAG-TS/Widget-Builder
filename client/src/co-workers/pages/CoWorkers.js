@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, FlexboxGrid, Progress, Tag, Input, InputGroup, Icon, Button, Container } from 'rsuite';
+import { Table, FlexboxGrid, Progress, Tag, Input, InputGroup, Icon, Button, Container, Loader } from 'rsuite';
 
 
 
@@ -18,12 +18,19 @@ const StatusCell = ({ rowData, dataKey, ...props }) => (
         </FlexboxGrid>
     </Table.Cell>
 );
+const NotificationCell = ({ rowData, dataKey, ...props }) => (
+    <Table.Cell placement="center" {...props} style={{ padding: 0, height: '100%' }}>
+        <FlexboxGrid justify="start" style={{ padding: '10px', height: '100%' }}>
+            <Button appearance="subtle" color="orange" style={{ marginTop: '-4px'}}>Get Notified</Button>
+        </FlexboxGrid>
+    </Table.Cell>
+);
 
 
 
 
 export default function CoWorkers() {
-
+    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [coWorkers, setCoWorkers] = useState([])
 
@@ -39,12 +46,14 @@ export default function CoWorkers() {
     }
    
     const getCoWorkers = () => {
+        setLoading(true)
         axios.get('/co-workers')
             .then((coWorkers) => {
                 //Filters out users that are not supposed to be in the list.
                 //This needs to be  done because Jira categorizes users and apps as the same thing. (Not sure why)
                 let filteredCoWorkers = coWorkers.data.filter(person => person.accountType === "atlassian")
                 mergeData(filteredCoWorkers);
+                
             })
             .catch(err => console.log(err));
         
@@ -100,6 +109,7 @@ export default function CoWorkers() {
             mergedData.push(newPerson);
         };
         setCoWorkers(mergedData);
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -130,7 +140,7 @@ export default function CoWorkers() {
                 </FlexboxGrid.Item>
             </FlexboxGrid>
             <div className="card">
-                <Table autoHeight affixHeader affixHorizontalScrollbar data={getData(coWorkers)}>
+                <Table autoHeight affixHeader affixHorizontalScrollbar loading={loading} data={getData(coWorkers)}>
                     <Table.Column width={240} justify="start" resizable>
                         <Table.HeaderCell>Name</Table.HeaderCell>
                         <Table.Cell dataKey="name" />
@@ -154,6 +164,11 @@ export default function CoWorkers() {
                     <Table.Column width={480} justify="start" resizable>
                         <Table.HeaderCell>Message</Table.HeaderCell>
                         <Table.Cell dataKey="message" />
+                    </Table.Column>
+
+                     <Table.Column width={480} justify="start" resizable>
+                        <Table.HeaderCell>Request Notification</Table.HeaderCell>
+                        <NotificationCell dataKey="name" />
                     </Table.Column>
                     
                 </Table>
