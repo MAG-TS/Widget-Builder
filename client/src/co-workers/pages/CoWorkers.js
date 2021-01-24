@@ -121,7 +121,7 @@ const CoWorkers = () => {
 
     // GET - users from database
     const getUserInfo = async (userId) => {
-        const users = Axios({
+        const users = axios({
                 method: "GET",
                 withCredentials: true,
                 url: "/users/",
