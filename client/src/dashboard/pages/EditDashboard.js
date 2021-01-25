@@ -108,13 +108,6 @@ const EditDashboard = () => {
                 </FlexboxGrid>
                 <div>
                     <Grid fluid>
-                        <Row gutter={16}>
-                            <Col lg={12}>
-                                <div className="card">
-                                    <h1>Widget Card</h1>
-                                </div>
-                            </Col>
-                        </Row>
                         {selectedWidget}
                     </Grid>
                 </div>
@@ -134,6 +127,7 @@ const EditDashboard = () => {
                     }) : null
                 }
                 <Button 
+                    appearance={active?'default':'ghost'}
                     color="orange" 
                     className="button-shadow full-width button-margin-top"
                     onClick={() => addWidget()}>Add Widget</Button>

@@ -12,6 +12,13 @@
     height: calc(100vh - 57px);
     max-width: 240px;
 }
+.widget-builder-side-bar{
+    background-color: white;
+    flex: 0 0 300px;
+    padding: 16px;
+    height: calc(100vh - 57px);
+    max-width: 300px;
+}
 .builder-element-box{
     border-radius: 6px;
     background-color: white;
