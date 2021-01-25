@@ -15,7 +15,7 @@ const CoWorkers = () => {
     const StatusCell = ({ rowData, dataKey, ...props }) => (
         <Table.Cell placement="center" {...props} style={{ padding: 0, height: '100%' }}>
             <FlexboxGrid justify="start" style={{ padding: '10px', height: '100%' }}>
-                <Tag color={rowData[dataKey] ? 'red' : 'green'}>{rowData[dataKey] ? 'Busy' : 'Free'}</Tag>
+                <Tag color={rowData[dataKey] ? 'green' : 'red'}>{rowData[dataKey] ? 'Free' : 'Busy'}</Tag>
             </FlexboxGrid>
         </Table.Cell>
     );
@@ -113,6 +113,7 @@ const CoWorkers = () => {
             console.log(newPerson);
 
             mergedData.push(newPerson);
+            console.log(user[0]);
         };
 
         setCoWorkers(mergedData);
