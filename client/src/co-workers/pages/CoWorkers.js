@@ -173,22 +173,22 @@ const CoWorkers = () => {
                         <StatusCell dataKey="busyStatus"/>
                     </Table.Column>
                     
-                    <Table.Column width={240} justify="start" resizable>
+                    <Table.Column width={200} justify="start" resizable>
                         <Table.HeaderCell>Job Title</Table.HeaderCell>
                         <Table.Cell dataKey="jobTitle" />
                     </Table.Column>
 
-                    <Table.Column width={360} justify="start" resizable>
+                    <Table.Column width={320} justify="start" resizable>
                         <Table.HeaderCell>Workload</Table.HeaderCell>
                         <ProgressCell dataKey="workload"/>
                     </Table.Column>
 
-                    <Table.Column width={480} justify="start" resizable>
+                    <Table.Column width={320} justify="start" resizable>
                         <Table.HeaderCell>Message</Table.HeaderCell>
                         <Table.Cell dataKey="message" />
                     </Table.Column>
 
-                     <Table.Column width={480} justify="start" resizable>
+                     <Table.Column width={160} justify="start" resizable>
                         <Table.HeaderCell>Request Notification</Table.HeaderCell>
                         <NotificationCell dataKey="name" />
                     </Table.Column>
